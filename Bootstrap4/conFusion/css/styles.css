@@ -18,7 +18,7 @@
 
 .jumbotron {
     padding: 70px 30px 70px 30px;
-    margin:  0px auto;
+    margin: 0px auto;
     background: #9575cd;
     color: floralwhite;
 }
@@ -30,12 +30,12 @@
 }
 
 body {
-    padding:50px 0px 0px 0px;
-    z-index:0;
+    padding: 50px 0px 0px 0px;
+    z-index: 0;
 }
 
 .navbar-dark {
-     background-color: #512DA8;
+    background-color: #512DA8;
 }
 
 #button-reservation-table {
@@ -47,6 +47,12 @@ body {
 }
 
 .radio {
+    padding-right: 10px;
+}
 
-padding-right: 10px;
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
 }
