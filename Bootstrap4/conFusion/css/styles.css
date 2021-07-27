@@ -29,11 +29,24 @@
     color: #0f0f0f;
 }
 
-body{
+body {
     padding:50px 0px 0px 0px;
     z-index:0;
 }
 
 .navbar-dark {
      background-color: #512DA8;
+}
+
+#button-reservation-table {
+    border: 0px;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-weight: 500;
+    font-size: 100%;
+}
+
+.radio {
+
+padding-right: 10px;
 }
