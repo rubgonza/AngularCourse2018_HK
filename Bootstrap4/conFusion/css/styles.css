@@ -66,3 +66,17 @@ body {
     bottom: 0px;
     z-index: 1;
 }
+
+.modal-header {
+    background: #512DA8;
+    color: #FFFAF0;
+}
+
+.modal-body {
+    background: #D1C4E9;
+    font-weight: 500;
+}
+
+.close {
+    color: #FFFAF0;
+}
