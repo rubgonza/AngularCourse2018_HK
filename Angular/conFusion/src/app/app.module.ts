@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -32,8 +34,6 @@ import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 import { LoginComponent } from './login/login.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
 
 @NgModule({
   declarations: [
@@ -52,7 +52,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     BrowserAnimationsModule,
     MatDialogModule,
     MatToolbarModule,
-    MatProgressSpinnerModule,
     FlexLayoutModule,
     AppRoutingModule,
     MatGridListModule,
@@ -62,6 +61,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule,
     MatCheckboxModule,
     MatListModule,
+    MatProgressSpinnerModule,
     MatSelectModule,
     MatSlideToggleModule,
     FormsModule,
