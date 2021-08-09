@@ -13,7 +13,7 @@ export class DishService {
     return Promise.resolve(DISHES);
   }
 
-  getDish(id: number): Promise<Dish> {
+  getDish(id: string): Promise<Dish> {
     return Promise.resolve(DISHES.filter((dish) => (dish.id === id))[0]);
   }
 
