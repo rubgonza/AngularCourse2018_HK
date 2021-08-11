@@ -36,9 +36,14 @@
     </div>
   </div>
 
-  <div [hidden]="dish">
+  <div [hidden]="dish || dishErrMess">
     <mat-spinner></mat-spinner>
     <h4>Loading . . . Please Wait</h4>
+  </div>
+
+  <div fxFlex *ngIf="dishErrMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
   </div>
 
   <div *ngIf="dish" fxFlex="40">
@@ -74,9 +79,14 @@
     </mat-list>
   </div>
 
-  <div [hidden]="dish">
+  <div [hidden]="dish || dishErrMess">
     <mat-spinner></mat-spinner>
     <h4>Loading . . . Please Wait</h4>
+  </div>
+
+  <div fxFlex *ngIf="dishErrMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
   </div>
 
   <div fxFlex="40"></div>
@@ -106,8 +116,13 @@
     </div>
   </div>
 
-  <div [hidden]="dish">
+  <div [hidden]="dish || dishErrMess">
     <mat-spinner></mat-spinner>
     <h4>Loading . . . Please Wait</h4>
+  </div>
+
+  <div fxFlex *ngIf="dishErrMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
   </div>
 </div>
