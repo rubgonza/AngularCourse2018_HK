@@ -1,7 +1,7 @@
 <div class="container" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column"
   fxLayoutAlign.gt-md="space-around center" fxLayoutGap="10px" fxLayoutGap.xs="0">
 
-  <div fxFlex="100" *ngIf="dish">
+  <div fxFlex="100" *ngIf="dish" [@expand]>
     <div>
       <h3>{{dish.name | uppercase}}</h3>
       <hr>
@@ -9,7 +9,7 @@
   </div>
 
 
-  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
+  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility" [@expand]>
     <!-- <p>Display the details of the Dish here</p> -->
     <div fxFlex *ngIf="dish">
       <mat-card>
@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
+  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility" [@expand]>
     <mat-list>
       <h3>Comments</h3>
       <mat-list-item *ngFor="let comment of dish.comments">
@@ -71,38 +71,38 @@
 
   <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
 
-  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
-    <div class="form-size">
-      <form novalidate [formGroup]="ratingForm" #rform="ngForm" (ngSubmit)="onSubmit()">
-        <p>
-          <mat-form-field class="half-width">
-            <input matInput formControlName="author" placeholder="Name" type="text" required>
-            <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
-          </mat-form-field>
-        </p>
-        <p>
-          <mat-slider thumbLabel formControlName="rating" [displayWith]="formatLabel" tickInterval="1" min="0" max="5"
-            vale="5"></mat-slider>
-        </p>
-        <p>
-          <mat-form-field class="full-width">
-            <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12 required></textarea>
-            <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
-          </mat-form-field>
-        </p>
-        <button type="submit" mat-button class="background-primary text-floral-white"
-          [disabled]="ratingForm.invalid">Submit</button>
-      </form>
+    <div fxFlex="40" *ngIf="dish" [@visibility]="visibility" [@expand]>
+      <div class="form-size">
+        <form novalidate [formGroup]="ratingForm" #rform="ngForm" (ngSubmit)="onSubmit()">
+          <p>
+            <mat-form-field class="half-width">
+              <input matInput formControlName="author" placeholder="Name" type="text" required>
+              <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-slider thumbLabel formControlName="rating" [displayWith]="formatLabel" tickInterval="1" min="0" max="5"
+              vale="5"></mat-slider>
+          </p>
+          <p>
+            <mat-form-field class="full-width">
+              <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12 required></textarea>
+              <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+            </mat-form-field>
+          </p>
+          <button type="submit" mat-button class="background-primary text-floral-white"
+            [disabled]="ratingForm.invalid">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div [hidden]="dish || ErrMsg">
+      <mat-spinner></mat-spinner>
+      <h4>Loading . . . Please Wait</h4>
+    </div>
+
+    <div fxFlex *ngIf="ErrMsg">
+      <h2>Error</h2>
+      <h4>{{ErrMsg}}</h4>
     </div>
   </div>
-
-  <div [hidden]="dish || ErrMsg">
-    <mat-spinner></mat-spinner>
-    <h4>Loading . . . Please Wait</h4>
-  </div>
-
-  <div fxFlex *ngIf="ErrMsg">
-    <h2>Error</h2>
-    <h4>{{ErrMsg}}</h4>
-  </div>
-</div>
