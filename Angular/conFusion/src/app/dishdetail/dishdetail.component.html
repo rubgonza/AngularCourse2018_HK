@@ -9,7 +9,7 @@
   </div>
 
 
-  <div fxFlex="40">
+  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
     <!-- <p>Display the details of the Dish here</p> -->
     <div fxFlex *ngIf="dish">
       <mat-card>
@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <div *ngIf="dish" fxFlex="40">
+  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
     <mat-list>
       <h3>Comments</h3>
       <mat-list-item *ngFor="let comment of dish.comments">
@@ -69,9 +69,9 @@
     </mat-list>
   </div>
 
-  <div fxFlex="40"></div>
+  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
 
-  <div *ngIf="dish" fxFlex="40">
+  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
     <div class="form-size">
       <form novalidate [formGroup]="ratingForm" #rform="ngForm" (ngSubmit)="onSubmit()">
         <p>
