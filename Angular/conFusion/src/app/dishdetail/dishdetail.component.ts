@@ -14,7 +14,7 @@ import { Comment } from '../shared/comment';
   styleUrls: ['./dishdetail.component.scss']
 })
 export class DishdetailComponent implements OnInit {
-  @ViewChild('fform') ratingFormDirective;
+  @ViewChild('rform') ratingFormDirective;
 
   dish: Dish;
   dishIds: string[];
@@ -22,13 +22,13 @@ export class DishdetailComponent implements OnInit {
   next: string;
   ratingForm: FormGroup;
   comment: Comment;
-  dishErrMess: string;
+  ErrMess: string;
   dishcopy: Dish;
 
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
     private location: Location, private fb: FormBuilder,
-    @Inject('baseURL') private baseURL) {
+    @Inject('BaseURL') private BaseURL) {
     this.createForm();
   }
 
@@ -37,7 +37,7 @@ export class DishdetailComponent implements OnInit {
     this.route.params
       .pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
       .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
-        dishErrMess => this.dishErrMess = <any>dishErrMess);
+      ErrMess => this.ErrMess = <any>ErrMess);
   }
 
   setPrevNext(dishId: string) {
@@ -80,12 +80,11 @@ export class DishdetailComponent implements OnInit {
     var date = new Date();
     var dateToString = date.toISOString();
     this.comment.date = dateToString;
-    this.dish.comments.push(this.comment);
-
-    // this.dishcopy.comments.push(this.comment);
+    // this.dish.comments.push(this.comment);
+    this.dishcopy.comments.push(this.comment);
     this.dishservice.putDish(this.dishcopy)
       .subscribe(dish => { this.dish = dish; this.dishcopy = dish; },
-        dishErrMess => { this.dish = null; this.dishcopy = null; this.dishErrMess = <any>dishErrMess; });
+        ErrMess => { this.dish = null; this.dishcopy = null; this.ErrMess = <any>ErrMess; });
 
     console.log(this.comment);
     this.ratingForm.reset({

@@ -41,3 +41,10 @@ body {
 .text-floral-white {
     color: $background-pale;
 }
+
+.highlight {
+    background-color: $background-dark;
+    border: 1px solid $background-pale;
+    z-index: 1;
+    transform: scale(1.01);
+}
