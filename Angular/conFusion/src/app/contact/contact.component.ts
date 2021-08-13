@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { expand, flyInOut } from '../animations/app.animation';
 import { Feedback, ContactType } from '../shared/feedback';
+import { FeedbackService } from '../services/feedback.service';
+import { discardPeriodicTasks } from '@angular/core/testing';
 
 @Component({
   selector: 'app-contact',
@@ -10,7 +12,7 @@ import { Feedback, ContactType } from '../shared/feedback';
   host: {
     '[@flyInOut]': 'true',
     'style': 'display: block;'
-    },
+  },
   animations: [
     flyInOut(),
     expand()
@@ -25,12 +27,19 @@ export class ContactComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  ErrMess: string;
+  uploadFinish: boolean;
+  showFeedBack: boolean;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private feedbackservice: FeedbackService,
+    @Inject('BaseURL') private BaseURL) {
     this.createForm();
   }
 
   ngOnInit() {
+    this.uploadFinish = false;
+    this.showFeedBack = false;
   }
 
   createForm(): void {
@@ -80,7 +89,24 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;
+
     console.log(this.feedback);
+
+    this.feedbackservice.postFeedBack(this.feedback).subscribe(feedback => { this.feedback = feedback; },
+      ErrMess => { this.feedback = null; this.ErrMess = <any>ErrMess; });
+
+    this.uploadFinish = true;
+
+    setTimeout(() => {
+      this.uploadFinish = false;
+      this.showFeedBack = true;
+    }, 2000);
+
+    setTimeout(() => {
+      this.showFeedBack = false;
+    }, 5000);
+
+    this.feedbackFormDirective.resetForm();
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
@@ -90,7 +116,6 @@ export class ContactComponent implements OnInit {
       contacttype: 'None',
       message: ''
     });
-    this.feedbackFormDirective.resetForm();
   }
 
   onValueChanged(data?: any) {
@@ -112,6 +137,4 @@ export class ContactComponent implements OnInit {
       }
     }
   }
-
-
 }

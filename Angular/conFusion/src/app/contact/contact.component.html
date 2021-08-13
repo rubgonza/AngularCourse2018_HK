@@ -35,9 +35,8 @@
   </div>
   <div fxFlex fxFlexOffset="20px" class="form-size">
     <h3>Send us your Feedback</h3>
-    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
 
-    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" *ngIf="!showFeedBack" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
@@ -77,5 +76,52 @@
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
     </form>
+
+    <div *ngIf="uploadFinish">
+      <h4>Submitting Form</h4>
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div *ngIf="showFeedBack">
+      <h4>Your Submission</h4>
+      <mat-list *ngIf="showFeedBack">
+        <mat-list-item>
+          <h5 matLine>
+            <span> First Name: {{feedback.firstname}} </span>
+          </h5>
+        </mat-list-item>
+        <mat-list-item>
+          <p matLine>
+            <span> Second Name: {{feedback.lastname}} </span>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <p matLine>
+            <span> Tel. Number: {{feedback.telnum}}</span>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <p matLine>
+            <span> Email: {{feedback.email}}</span>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <p matLine>
+            <span> Contact You?: {{feedback.agree}}</span>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <p matLine>
+            <span> How?: {{feedback.contacttype}}</span>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <p matLine>
+            <span> Feedback: {{feedback.message}}</span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
   </div>
 </div>
